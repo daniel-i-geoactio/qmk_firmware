@@ -46,21 +46,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * Base Layer: QWERTY
  *
  * ,-------------------------------------------.                              ,-------------------------------------------.
- * |RAIS/ESC|   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |  | \   |
+ * |  ESC   |   Q  |   W  |   E  |   R  |   T  |                              |   Y  |   U  |   I  |   O  |   P  |  | \   |
  * |--------+------+------+------+------+------|                              |------+------+------+------+------+--------|
  * |Ctrl/BS |   A  |   S  |  D   |   F  |   G  |                              |   H  |   J  |   K  |   L   |  Ñ  |  ' "   |
  * |--------+------+------+------+------+------+-------------.  ,-------------+------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   C  |   V  |   B  |  GUI |CAPSLK|  | GUI  |ImprPnt|   N  |   M  | ,  < | . >  | /  ? |   '    |
  * `----------------------+------+------+------+------+------|  |------+------+------+------+------+----------------------
- *                        | GUI  | Del  | Enter| Space| Esc  |  | Enter| Space| Tab  |AltGr |Adjust|
- *                        |      |      | Alt  | Lower| Raise|  | Lower| Raise|      |      |      |
+ *                        | GUI  | Del  | Alt  | Space| Raise|  | Enter| Raise | Tab  |AltGr |Adjust|
+ *                        |      |      |      | Lower|      |  | Lower|       |      |      |      |
  *                        `----------------------------------'  `----------------------------------'
  */
     [_QWERTY] = LAYOUT(
       KC_ESC,                  KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    ADJUST,
       MT(MOD_LCTL, KC_BSPC),   KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                                         KC_H,    KC_J,    KC_K,    KC_L,    ES_NTIL, KC_QUOT,
       KC_LSFT,                 KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,   KC_LGUI,   KC_CAPS_LOCK, KC_LGUI, KC_PSCR, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, ES_QUOT,
-              KC_LGUI, KC_DEL, MT(MOD_LALT, KC_ENT), LT(_LOWER, KC_SPC), LT(_RAISE, KC_ESC), LT(_LOWER, KC_ENT), LT(_RAISE, KC_SPC), KC_TAB,  KC_RALT, ADJUST
+              KC_LGUI, KC_DEL, MOD_LALT, LT(_LOWER, KC_SPC), MO(_RAISE), LT(_LOWER, KC_ENT), MO(_RAISE), KC_TAB,  KC_RALT, ADJUST
     ),
 
 /*
@@ -211,7 +211,7 @@ bool oled_task_user(void) {
         // clang-format on
 
         oled_write_P(qmk_logo, false);
-        oled_write_P(PSTR("Kyria rev1.0 by abek4\n\n"), false);
+        oled_write_P(PSTR("\nDaniel Ibanez Pagola\n\n"), false);
 
         // Host Keyboard Layer Status
         oled_write_P(PSTR("Layer: "), false);
